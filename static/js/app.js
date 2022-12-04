@@ -38,17 +38,63 @@
 // SAMPLE STRUCTURE
 // 1.  Check inspector console to see if each function is running on page load
 
-
 // function that contains instructions at page load/refresh
 // function does not run until called
-function init(){
+
     // code that runs once (only on page load or refresh)
+    const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
+    
+    function init() {
+    d3.json(url).then(function(data) {
+        let values = data.samples[0].sample_values;
+        let labels = data.samples[0].otu_labels;
+        console.log(labels);
+        let ids = data.samples[0].otu_ids;
 
-    // this checks that our initial function runs.
-    console.log("The Init() function ran")
+        let sampleValues10 = values.slice(0,10).reverse();
+        let otuLabels10 = labels.slice(0,10).reverse();
+        let otuIDs10 = ids.slice(0,10).reverse();
 
+        let otuIDs = otuIDs10.map(e => "OTU " + e);
+        console.log(`OTU IDs: ${otuIDs}`)
+        
+        let trace1 = {
+            x: sampleValues10,
+            y: otuIDs,
+            text: otuLabels10,
+            type: "bar",
+            orientation: "h"
+        };
+        let data2 = [trace1];
+
+        let layout = {
+            title: "Top 10 OTU",
+            width: 1000
+        }
+
+        Plotly.newPlot("bar", data2, layout);
+
+        let trace2 = {
+            x: ids,
+            y: values,
+            text: labels,
+            mode: 'markers',
+            marker: {
+              color: ids,
+              size: values
+            }
+          };
+          
+          var data = [trace2];
+          
+          var layout2 = {
+            title: "Bacteria by OTU and Volume",
+            width: 1400
+          };
+          
+          Plotly.newPlot('bubble', data, layout2);
+    });
     // create dropdown/select
-
 
     // run functions to generate plots
     createScatter('940')
@@ -73,14 +119,14 @@ function createScatter(id){
     // code that makes scatter plot at id='bubble'
 
     // checking to see if function is running
-    console.log(`This function generates scatter plot of ${id} `)
+    // console.log(`This function generates scatter plot of ${id} `)
 }
 
 function createBar(id){
     // code that makes bar chart at id='bar'
 
     // checking to see if function is running
-    console.log(`This function generates bar chart of ${id} `)
+    // console.log(`This function generates bar chart of ${id} `)
 
 }
 
@@ -88,7 +134,7 @@ function createSummary(id){
     // code that makes list, paragraph, text/linebreaks at id='sample-meta'
 
     // checking to see if function is running
-    console.log(`This function generates summary info of ${id} `)
+    // console.log(`This function generates summary info of ${id} `)
 }
 
 
