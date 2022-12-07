@@ -42,13 +42,12 @@
 // function does not run until called
 
     // code that runs once (only on page load or refresh)
-    const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
+const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
     
-    function init() {
-    d3.json(url).then(function(data) {
+function plots(id) {
+    d3.json(url).then(data => {
         let values = data.samples[0].sample_values;
         let labels = data.samples[0].otu_labels;
-        console.log(labels);
         let ids = data.samples[0].otu_ids;
 
         let sampleValues10 = values.slice(0,10).reverse();
@@ -56,64 +55,75 @@
         let otuIDs10 = ids.slice(0,10).reverse();
 
         let otuIDs = otuIDs10.map(e => "OTU " + e);
-        console.log(`OTU IDs: ${otuIDs}`)
         
-        let trace1 = {
+        // create dropdown/select
+        var dropdown = d3.select("#selDataset");
+            data.names.forEach(name => {
+            dropdown.append("option").text(name).property("value")
+            });
+        
+        // run functions to generate plots
+        var trace1 = {
             x: sampleValues10,
             y: otuIDs,
             text: otuLabels10,
             type: "bar",
             orientation: "h"
         };
-        let data2 = [trace1];
 
-        let layout = {
+        let data1 = [trace1];
+
+        let layout1 = {
             title: "Top 10 OTU",
             width: 1000
-        }
+        };
 
-        Plotly.newPlot("bar", data2, layout);
+        Plotly.newPlot("bar", data1, layout1);
 
-        let trace2 = {
+        var trace2 = {
             x: ids,
             y: values,
             text: labels,
             mode: 'markers',
             marker: {
-              color: ids,
-              size: values
+                color: ids,
+                size: values
             }
-          };
-          
-          var data = [trace2];
-          
-          var layout2 = {
+        };
+      
+        let data2 = [trace2];
+      
+        let layout2 = {
             title: "Bacteria by OTU and Volume",
+            height: 1000,
             width: 1400
-          };
-          
-          Plotly.newPlot('bubble', data, layout2);
+         };
+      
+        Plotly.newPlot('bubble', data2, layout2);
     });
-    // create dropdown/select
+};
 
-    // run functions to generate plots
-    createScatter('940')
-    createBar('940')
-    createSummary('940')
-
-}
+function demoInfo(id) {
+    d3.json(url).then(data => {
+        let metadata = data.metadata;
+        let output = metadata.filter(meta => meta.id.toString() === id)[0];
+        let demoTable = d3.select("#sample-metadata");
+            demoTable.html("");
+            Object.entries(output).forEach((key) => {   
+            demoTable.append("h5").text(key[0].toUpperCase() + ": " + key[1] + "\n");    
+        });
+    });
+};
 
 // function that runs whenever the dropdown is changed
 // this function is in the HTML and is called with an input called 'this.value'
 // that comes from the select element (dropdown)
-function optionChanged(newID){
+function optionChanged(id){
     // code that updates graphics
     // one way is to recall each function
-    createScatter(newID)
-    createBar(newID)
-    createSummary(newID)
-
-}
+    plots(id);
+    demoInfo(id);
+};
 
 function createScatter(id){
     // code that makes scatter plot at id='bubble'
@@ -137,11 +147,26 @@ function createSummary(id){
     // console.log(`This function generates summary info of ${id} `)
 }
 
+function init() {
+    // select dropdown menu 
+    var dropdown = d3.select("#selDataset");
 
-// function called, runs init instructions
-// runs only on load and refresh of browser page
-init()
+    // read the data 
+    d3.json(url).then(data => {
+        console.log(data)
 
+        // get the id data to the dropdwown menu
+        data.names.forEach(name => {
+            dropdown.append("option").text(name).property("value");
+        });
+
+        // call the functions to display the data and the plots to the page
+        plots(data.names[0]);
+        demoInfo(data.names[0]);
+    });
+}
+
+init();
 
 
 
