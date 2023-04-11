@@ -41,7 +41,7 @@ Create a bubble chart that displays each sample.
 <img width="95" alt="BBB demo chart" src="https://user-images.githubusercontent.com/111451303/231040510-8d9a87ab-19bb-4f91-9535-1ff954f897aa.png">
 
 
-- Update all the plots when a new sample is selected. Additionally, you are welcome to create any layout that you would like for your dashboard. An example dashboard is shown as follows:
+Update all the plots when a new sample is selected. Additionally, you are welcome to create any layout that you would like for your dashboard. An example dashboard is shown as follows:
 
 <img width="692" alt="BBB full dashboard" src="https://user-images.githubusercontent.com/111451303/231040579-6b357b3c-5d89-48f1-b9f7-1c3507ad54e2.png">
 
