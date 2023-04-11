@@ -16,6 +16,8 @@ Use ```otu_ids``` as the labels for the bar chart.
 
 Use ```otu_labels``` as the hovertext for the chart.
 
+<img width="484" alt="BBB bar chart" src="https://user-images.githubusercontent.com/111451303/231040394-69647f50-335c-431e-994a-c2ce1b3831a3.png">
+
 
 - Create a bubble chart that displays each sample.
 
@@ -29,13 +31,22 @@ Use ```otu_ids``` for the marker colors.
 
 Use ```otu_labels``` for the text values.
 
+<img width="679" alt="BBB bubble chart" src="https://user-images.githubusercontent.com/111451303/231040449-90991668-3a10-4c12-be39-ef6e06c42567.png">
+
 
 - Display the sample metadata, i.e., an individual's demographic information.
 
 - Display each key-value pair from the metadata JSON object somewhere on the page.
 
+<img width="95" alt="BBB demo chart" src="https://user-images.githubusercontent.com/111451303/231040510-8d9a87ab-19bb-4f91-9535-1ff954f897aa.png">
+
 
 - Update all the plots when a new sample is selected. Additionally, you are welcome to create any layout that you would like for your dashboard. An example dashboard is shown as follows:
 
+<img width="692" alt="BBB full dashboard" src="https://user-images.githubusercontent.com/111451303/231040579-6b357b3c-5d89-48f1-b9f7-1c3507ad54e2.png">
+
 ## Results
 The webpage can be accessed using this link: ```https://jelsbrock.github.io/belly-button-biodiversity/```
+
+## References
+Hulcr, J. et al. (2012) A Jungle in There: Bacteria in Belly Buttons are Highly Diverse, but Predictable. Retrieved from: ```http://robdunnlab.com/projects/belly-button-biodiversity/results-and-data/```
