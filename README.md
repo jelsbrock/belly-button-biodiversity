@@ -48,5 +48,7 @@ Create a bubble chart that displays each sample.
 ## Results
 The webpage can be accessed using this link: ```https://jelsbrock.github.io/belly-button-biodiversity/```
 
+Using the 'Test Subject ID No.' dropdown will update all elements of the dashboard to show the data collected for the ID number selected.
+
 ## References
 Hulcr, J. et al. (2012) A Jungle in There: Bacteria in Belly Buttons are Highly Diverse, but Predictable. Retrieved from: ```http://robdunnlab.com/projects/belly-button-biodiversity/results-and-data/```
